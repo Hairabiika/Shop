@@ -1,0 +1,40 @@
+﻿@model ShopFinal.Models.Product
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cart</title>
+</head>
+<body>
+
+    <h3>Продукти в количка</h3>
+    <table cellpadding="0" cellspacing="0" border="1">
+        <tr>
+            <th><h6> Опции </h6></th>
+            <th><h6> Продукт </h6></th>
+            <th><h6> Цена </h6></th>
+            <th><h6> Количество </h6></th>
+            <th><h6> Междинна цена </h6></th>
+        </tr>
+        @foreach (CartItem item in ViewBag.cart)
+        {
+            <tr>
+                <td><a asp-controller="cart" asp-action="remove" asp-route-id="@item.Product.Id">  Изтрий  </a></td>
+                <td><h5 sstyle="text-align: center;">  @item.Product.Name  </h5></td>
+                <td><h5 text-align: center;>  @item.Product.Price  </h5></td>
+                <td><h5 text-align: center;>  @item.Quantity  </h5></td>
+                <td><h5 text-align: center;>  @(item.Product.Price * item.Quantity)  </h5></td>
+            </tr>
+        }
+        <tr>
+            <td align="right" colspan="6"><h4>Крайна сума</h4></td>
+            <td>
+                <h4> @ViewBag.total </h4>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <a asp-controller="products" asp-action="index">Върни се обратно</a>
+
+</body>
+</html>

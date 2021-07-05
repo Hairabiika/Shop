@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ShopFinal.Models.Product>
+<p>
+    <a asp-action="Create">Добави продукт</a>
+</p>
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <td>
+                    <img src="@("~/image/"+@item.ImageName)" asp-append-version="true" class="zoom" />
+                <br />
+                    @Html.DisplayFor(modelItem => item.Name)
+                <br />
+                    @Html.DisplayFor(modelItem => item.Price)
+                <br />
+                    <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Коментирай</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a><br />
+                    <a class="btn btn-primary btn-lg active" roles="button" asp-controller="Cart" asp-action="Buy" asp-route-id="@item.Id">Добави в количка</a>
+            </td>
+            <td></td>
+            @if(item.Id % 4 == 0) { <tr></tr>}
+         }
+    </tbody>
+</table>
